@@ -50,13 +50,12 @@ The application follows a modular, end-to-end machine learning operational flow:
    ```bash
    pip install -r requirements.txt
 3. **Configure Environment:
-Create a .env file in the root directory and add your Google API key:
-
-Plaintext
+Create a `.env` file in the root directory and add your Google API key:
+   ```Plaintext
    GOOGLE_API_KEY=your_api_key_here
    
 4. **Run the Application:
 
-```bash
-streamlit run app.py
+    ```bash
+    streamlit run app.py
 
