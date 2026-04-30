@@ -61,6 +61,7 @@ currency-analyst-agent/
 └── README.md            # Project documentation
 
 
+
 🚀 Local Setup & Installation
 
 To run this project locally on your machine, follow these steps:
@@ -71,10 +72,12 @@ git clone [https://github.com/Vipeen21/currency-analyst-agent.git](https://githu
 cd currency-analyst-agent
 
 
+
 2. Install dependencies
 It is recommended to use a virtual environment (venv or conda).
 
 pip install -r requirements.txt
+
 
 
 3. Configure Environment Variables
@@ -83,9 +86,11 @@ Create a .env file in the root directory and add your Google Gemini API Key:
 GOOGLE_API_KEY="your_api_key_here"
 
 
+
 4. Run the Application
 
 streamlit run app.py
+
 
 
 🤝 Contributing
