@@ -1,102 +1,47 @@
-🤖 Macro-Agent: Currency Volatility Analyst
+# 🤖 Macro-Agent: Currency Volatility Analyst
 
-Macro-Agent is an end-to-end, AI-powered macroeconomic research platform deployed on Streamlit Cloud. It ingests real-time financial data, computes quantitative risk metrics, and orchestrates an LLM (Large Language Model) to synthesize complex market volatility into actionable investment intelligence.
+An end-to-end AI-powered financial agent designed to monitor exchange rate volatility, perform econometric calculations, and generate real-time, actionable market intelligence. 
 
-🔗 Live Application | 📂 GitHub Repository
+This project bridges quantitative finance and Generative AI, utilizing a Python-based quantitative engine for data processing and a LangChain-orchestrated LLM for natural language reporting.
 
-🏗️ End-to-End Architecture
+---
 
-This project is built using a decoupled, modular architecture mimicking enterprise-grade AI applications.
+## 🏗️ System Architecture & Deployment Scheme
 
-1. Data Ingestion Layer (src/fetcher.py)
+The application follows a modular, end-to-end machine learning operational flow:
 
-Tooling: yfinance, pandas
+### 1. Data Ingestion (`src/fetcher.py`)
+*   **Source**: Yahoo Finance API via the `yfinance` library[cite: 6].
+*   **Process**: Fetches 1-year historical daily close prices for target currency pairs (e.g., USD/INR, EUR/USD, GBP/USD)[cite: 6]. 
 
-Process: Programmatically queries the Yahoo Finance API to extract 1-year historical daily close prices for major currency pairs (e.g., USD/INR, EUR/USD).
+### 2. Model Core: Quantitative Engine (`src/engine.py`)
+*   **Process**: Computes daily logarithmic returns to normalize price movements[cite: 5].
+*   **Mathematics**: Calculates annualized historical volatility using a 21-day rolling window[cite: 5]. The mathematical core relies on `numpy` and `pandas`[cite: 2], executing the following:
+    $$R_t = \ln\left(\frac{P_t}{P_{t-1}}\right)$$
+    $$\sigma_{annual} = \text{std}(R_{t-21:t}) \times \sqrt{252}$$
 
-Optimization: Squeezes multidimensional DataFrames into clean, 1D Pandas Series for lightweight downstream processing.
+### 3. AI Orchestration & API Layer (`src/agent.py`)
+*   **Framework**: Built using `langchain-core` and `langchain-google-genai`[cite: 2].
+*   **LLM Integration**: Utilizes Google's `gemini-3-flash-preview` model via API[cite: 4].
+*   **Prompt Engineering**: Injects the quantitative outputs (current price, calculated volatility score) and the specific ticker into a structured PromptTemplate[cite: 4]. The agent dynamically classifies the market as 'Cautious' (volatility > 15%) or 'Stable' (< 15%) to generate a concise, 2-sentence investor briefing[cite: 4].
 
-2. Quantitative Model Core (src/engine.py)
+### 4. Frontend & Orchestration (`app.py`)
+*   **Framework**: Streamlit[cite: 3].
+*   **UI/UX**: Provides an interactive dashboard with dynamic metric tracking, temporal line charts for both price and volatility (trailing 30 days), and the AI-generated report[cite: 3].
 
-Tooling: numpy, pandas
+### 5. Deployment & Environment Strategy
+*   **Environment**: The repository includes a `.devcontainer` configuration, ensuring consistent, containerized local development environments[cite: 1].
+*   **Secrets Management**: Securely loads API credentials using `python-dotenv`[cite: 3].
+*   **Production Deployment**: The app is container-ready and optimized for deployment on Streamlit Community Cloud, HuggingFace Spaces, or AWS EC2/ECS. 
 
-Process: Transforms raw price series into daily logarithmic returns ($R_t = \ln(P_t / P_{t-1})$) to ensure statistical stationarity.
+### 6. Monitoring (Future Scope)
+*   **LLM Observability**: Integration with LangSmith to trace prompt execution, monitor token latency, and debug the LangChain pipeline.
+*   **Data Drift**: Tracking deviations in the rolling volatility distribution.
 
-Metric Calculation: Computes the Annualized Volatility using a 21-day rolling standard deviation, scaled by the square root of 252 (trading days in a year).
+---
 
-3. AI & Orchestration Layer (src/agent.py)
+## 🚀 Quick Start
 
-Tooling: langchain-google-genai, langchain-core
-
-Process: Acts as the "Brain" of the application. Uses LangChain PromptTemplates to inject the calculated quantitative metrics (price, volatility) into an engineered prompt context.
-
-Inference: Calls the gemini-3-flash-preview model to generate a strictly formatted, human-readable 2-sentence financial report advising investors on market stability (Threshold: 15% volatility).
-
-4. Frontend & API Layer (app.py)
-
-Tooling: streamlit
-
-Process: Provides a reactive, interactive UI. Handles asynchronous state management (st.spinner), captures user inputs (currency tickers), and visually plots 30-day historical trends and volatility curves.
-
-5. Deployment & Monitoring
-
-Infrastructure: Streamlit Community Cloud
-
-Security: API keys and environment variables are securely managed via Streamlit Secrets and .env (locally ignored via .gitignore).
-
-CI/CD: Continuous deployment pipeline connected directly to the GitHub main branch.
-
-🗂️ Project Structure
-
-currency-analyst-agent/
-│
-├── src/
-│   ├── fetcher.py       # API calls and data extraction
-│   ├── engine.py        # Mathematical transformations & quant logic
-│   └── agent.py         # LangChain orchestration and LLM prompts
-│
-├── app.py               # Main Streamlit application and UI
-├── requirements.txt     # Dependency management
-├── .gitignore           # Git tracking exclusions
-└── README.md            # Project documentation
-
-
-
-🚀 Local Setup & Installation
-
-To run this project locally on your machine, follow these steps:
-
-1. Clone the repository
-
-git clone [https://github.com/Vipeen21/currency-analyst-agent.git](https://github.com/Vipeen21/currency-analyst-agent.git)
-cd currency-analyst-agent
-
-
-
-2. Install dependencies
-It is recommended to use a virtual environment (venv or conda).
-
-pip install -r requirements.txt
-
-
-
-3. Configure Environment Variables
-Create a .env file in the root directory and add your Google Gemini API Key:
-
-GOOGLE_API_KEY="your_api_key_here"
-
-
-
-4. Run the Application
-
-streamlit run app.py
-
-
-
-🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
-
-📄 License
-
-This project is MIT licensed.
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/yourusername/currency-analyst-agent.git](https://github.com/yourusername/currency-analyst-agent.git)
