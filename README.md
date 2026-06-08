@@ -1,3 +1,19 @@
+[![GitHub followers](https://img.shields.io/github/followers/Vipeen21?style=for-the-badge&color=21262d&labelColor=161b22&logo=github)](https://github.com/Vipeen21)
+[![GitHub stars](https://img.shields.io/github/stars/Vipeen21/currency-analyst-agent?style=for-the-badge&color=e3b341&labelColor=161b22&logo=github)](https://github.com/Vipeen21/currency-analyst-agent/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Vipeen21/currency-analyst-agent?style=for-the-badge&color=58a6ff&labelColor=161b22&logo=github)](https://github.com/Vipeen21/currency-analyst-agent/network/members)
+[![GitHub license](https://img.shields.io/github/license/Vipeen21/currency-analyst-agent?style=for-the-badge&color=30a14e&labelColor=161b22)](https://github.com/Vipeen21/currency-analyst-agent/blob/main/LICENSE)
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=chainlink&logoColor=white" alt="LangChain">
+  <img src="https://img.shields.io/badge/Google%20Gemini-4285F4?style=flat-square&logo=google-gemini&logoColor=white" alt="Google Gemini API">
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white" alt="Streamlit">
+  <img src="https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white" alt="Pandas">
+  <img src="https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white" alt="NumPy">
+</p>
+
+
+
 # 🤖 Macro-Agent: Currency Volatility Analyst
 
 An end-to-end AI-powered financial agent designed to monitor exchange rate volatility, perform econometric calculations, and generate real-time, actionable market intelligence. 
